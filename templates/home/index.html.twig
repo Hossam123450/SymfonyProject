@@ -352,9 +352,122 @@
 </div>
 </section>
 
-<section id="contact" class="container py-5">
-<h2>Contact Us</h2>
-<p>Contenu de la section Contact Us...</p>
+<section id="contact" class="py-5">
+<div class="container">
+    <!-- En-tête -->
+    <div class="text-center mb-5">
+    <h2>Contact Us</h2>
+    <p class="text-muted">Reach out to us for any inquiries or feedback.</p>
+    </div>
+
+    <div class="row">
+    <!-- Infos à gauche -->
+    <div class="col-md-6">
+        <h4>Arbeit Vermittlung und Beratung / Conseil et placement de travail</h4>
+        <p>
+        <strong>Representation in France :</strong><br>
+        64700 HENDAYE, Frankreich<br>
+        Dr Henry, M.Direction
+        </p>
+
+        <p>
+        <strong>Germany representative :</strong><br>
+        Analucia (International relations)<br>
+        Noé (International relations)<br>
+        Olfa (Representative in North Africa)<br>
+        Harmonie A. (Advice and Management)<br>
+        Bruno A. (Advice)<br>
+        D-28198 Bremen
+        </p>
+
+        <p>
+        <strong>USA and Asia representative :</strong><br>
+        Julius C. H.<br>
+        35137 Maureen Dr., Sterling Heights, MI 48310 USA
+        </p>
+
+        <p>
+        <strong>Working hours:</strong><br>
+        Monday - Friday: 9:00 AM - 5:00 PM<br>
+        Saturday: 10:00 AM - 3:00 PM<br>
+        Sunday: Closed
+        </p>
+    </div>
+
+    <!-- Formulaire à droite -->
+    <div class="col-md-6">
+        <div class="card shadow p-4">
+        {{ form_start(form) }}
+            <div class="mb-3">
+            {{ form_label(form.name) }}
+            {{ form_widget(form.name) }}
+            {{ form_errors(form.name) }}
+            </div>
+            <div class="mb-3">
+            {{ form_label(form.email) }}
+            {{ form_widget(form.email) }}
+            {{ form_errors(form.email) }}
+            </div>
+            <div class="mb-3">
+            {{ form_label(form.message) }}
+            {{ form_widget(form.message) }}
+            {{ form_errors(form.message) }}
+            </div>
+            {{ form_widget(form.send) }}
+        {{ form_end(form) }}
+        </div>
+    </div>
+    </div>
+</div>
 </section>
+<!-- Footer -->
+<footer class="footer-custom text-light pt-5 pb-4">
+    <div class="container">
+        <div class="row text-start">
+
+            <!-- 1ère colonne : Logo et contact -->
+            <div class="col d-flex">
+                <div class="me-3">
+                    <img src="{{ asset('images/icon.png') }}" alt="Logo" width="50" height="50">
+                </div>
+                
+            </div>
+
+            <!-- 2ème colonne : En savoir plus -->
+            <div class="col">
+                <div>
+                    <h5>Contactez-nous</h5>
+                    <p class="mb-1">Zwischenahner Str. 10, 28195 Brême</p>
+                    <p class="mb-1">info@jobsearch-consulting.com</p>
+                    <p class="mb-1">+49 151 74121505</p>
+                </div> 
+            </div>
+
+            <!-- 3ème colonne : Optionnel / Vide -->
+            <div class="col">
+                <h5>En savoir plus</h5>
+                <ul class="list-unstyled">
+                    <li><a href="#about" class="text-light text-decoration-none">À propos de nous</a></li>
+                    <li><a href="#services" class="text-light text-decoration-none">Services</a></li>
+                    <li><a href="#contact" class="text-light text-decoration-none">Contactez-nous</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Conditions d'utilisation</a></li>
+                    <li><a href="#" class="text-light text-decoration-none">Politique de confidentialité</a></li>
+                </ul>
+            </div>
+            <!-- 4ème colonne : Copyright -->
+            <div class="col text-end">
+                <p class="mb-0">© 2024 AFRIPA Media Service.</p>
+                <p class="mb-0">Tous droits réservés</p>
+            </div>
+
+        
+    </div>
+</footer>
+
+<style>
+.footer-custom {
+    background-color: hsla(218, 22%, 26%, 1);
+}
+</style>
 
 {% endblock %}
