@@ -1,25 +1,57 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<div class="container mt-5">
-    <h2 class="mb-4">Connexion</h2>
+<!-- Style directement dans le body -->
+<style>
+.btn-login {
+    background-color: #3e41deff;
+    color: #ffffffff;
+    border-radius: 8px;
+    padding: 10px 20px;
+    border: 1px solid #ccc;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.btn-login:hover {
+    background-color: #f8f9fa;
+    color: #000;
+    border-color: #999;
+}
+</style>
 
-    {% if error %}
-        <div class="alert alert-danger">
-            {{ error.messageKey|trans(error.messageData, 'security') }}
-        </div>
-    {% endif %}
+<!-- Section Hero / fond -->
+<section class="hero d-flex align-items-center justify-content-center" style="height:100vh; background: url('{{ asset('images/hero-bg.jpg') }}') no-repeat center center/cover;">
+    
+    <!-- Card Formulaire -->
+    <div class="card p-4 shadow-lg" style="width: 100%; max-width: 400px; border-radius: 15px; background-color: #fff; position: relative;">
+        
+        <!-- Flèche retour Home -->
+        <a href="{{ path('home') }}" style="position: absolute; top: 15px; left: 15px; text-decoration: none; font-size: 20px;">&#8592; Home</a>
+        
+        <h2 class="text-center mb-4 mt-3">Connexion</h2>
 
-    <form method="post" action="{{ path('app_login') }}">
-        <div class="mb-3">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" class="form-control" value="{{ last_username }}" required autofocus>
-        </div>
-        <div class="mb-3">
-            <label for="password">Mot de passe</label>
-            <input type="password" name="password" id="password" class="form-control" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Connexion</button>
-    </form>
-</div>
+        {% if error %}
+            <div class="alert alert-danger">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
+
+        <form method="post" action="{{ path('app_login') }}">
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="text" name="email" id="email" class="form-control form-control-lg" value="{{ last_username }}" required autofocus>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Mot de passe</label>
+                <input type="password" name="password" id="password" class="form-control form-control-lg" required>
+            </div>
+            <button type="submit" class="btn-login w-100 mb-3">Connexion</button>
+        </form>
+
+        <!-- Bouton Register -->
+        <p class="text-center mb-0">Pas de compte ? <a href="{{ path('app_register') }}" class="btn-register">S'inscrire</a></p>
+    </div>
+</section>
+
 {% endblock %}
