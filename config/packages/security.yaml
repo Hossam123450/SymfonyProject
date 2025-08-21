@@ -27,5 +27,7 @@ security:
                 target: /
 
     access_control:
+        - { path: ^/cv, roles: ROLE_USER }
         - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: ^/register, roles: PUBLIC_ACCESS }
         - { path: ^/, roles: PUBLIC_ACCESS }

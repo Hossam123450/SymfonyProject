@@ -32,7 +32,7 @@ class Cv
     private $country;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
-private $cvFile;
+private ?string $cvFile = null;
 
     // Getters et Setters
     public function getId(): ?int { return $this->id; }
@@ -57,12 +57,14 @@ private $cvFile;
     public function getCountry(): ?string { return $this->country; }
     public function setCountry(string $country): self { $this->country = $country; return $this; }
 
-    public function setCvFile(?string $cvFile): self {
+    public function setCvFile(?string $cvFile): self
+{
     $this->cvFile = $cvFile;
     return $this;
 }
 
-public function getCvFile(): ?string {
+public function getCvFile(): ?string
+{
     return $this->cvFile;
 }
 }

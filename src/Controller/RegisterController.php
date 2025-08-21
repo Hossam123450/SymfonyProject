@@ -21,27 +21,25 @@ class RegisterController extends AbstractController
     ): Response {
         $user = new User();
         $form = $this->createForm(RegisterType::class, $user);
+$form->handleRequest($request);
 
-        $form->handleRequest($request);
+if ($form->isSubmitted() && $form->isValid()) {
+    // Hash le mot de passe
+    $user->setPassword(
+        $passwordHasher->hashPassword($user, $form->get('password')->getData())
+    );
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // Hasher le mot de passe
-            $hashedPassword = $passwordHasher->hashPassword(
-                $user,
-                $user->getPassword()
-            );
-            $user->setPassword($hashedPassword);
+    $em->persist($user);
+    $em->flush();
 
-            $em->persist($user);
-            $em->flush();
+    $this->addFlash('success', 'Compte créé avec succès !');
 
-            $this->addFlash('success', 'Inscription réussie ! Vous pouvez vous connecter.');
+    return $this->redirectToRoute('app_login');
+}
 
-            return $this->redirectToRoute('app_register'); // ou vers login
-        }
+return $this->render('register/index.html.twig', [
+    'form' => $form->createView(),
+]);
 
-        return $this->render('register/index.html.twig', [
-            'form' => $form->createView(),
-        ]);
     }
 }

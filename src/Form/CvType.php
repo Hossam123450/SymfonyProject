@@ -21,9 +21,14 @@ class CvType extends AbstractType
             // Ligne 1: Téléphone + Date de naissance
             ->add('phone', TextType::class, ['label' => 'Téléphone'])
             ->add('birthDate', DateType::class, [
-                'widget' => 'single_text',
-                'label' => 'Date de naissance'
-            ])
+    'widget' => 'single_text',
+    'html5' => true,
+    'format' => 'yyyy-MM-dd',
+    'label' => 'Date de naissance',
+])
+
+
+
             // Ligne 2: Sexe
             ->add('gender', ChoiceType::class, [
                 'choices' => [
@@ -57,20 +62,16 @@ class CvType extends AbstractType
             ->add('cvFile', FileType::class, [
     'label' => 'Télécharger CV',
     'mapped' => false,
-    'required' => true,
-    'constraints' => [
-        new File(
-            maxSize: '5M',
-            mimeTypes: [
-                'application/pdf',
-                'application/msword',
-                'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
-            ],
-            mimeTypesMessage: 'Veuillez télécharger un fichier PDF ou Word valide.'
-        )
-    ],
+    'required' => true
 ])
-            ->add('submit', SubmitType::class, ['label' => 'Soumettre']);
+            ->add('submit', SubmitType::class, [
+    'label' => 'Créer CV',
+    'attr' => [
+        'class' => 'btn-submit-cv',
+        'style' => 'background-color: #3e41de; color: #fff; border-radius: 25px;'
+    ]
+]);
+
     }
 
     public function configureOptions(OptionsResolver $resolver)

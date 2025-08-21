@@ -20,6 +20,7 @@
     outline: none;
 }
 
+/* Bouton */
 .btn-register {
     background-color: #3e41de !important;
     color: #fff !important;
@@ -35,25 +36,22 @@
     color: #fff !important;
     border-color: #0b5ed7 !important;
 }
-
-
 </style>
 {% endblock %}
+
 {% block title %}Inscription{% endblock %}
 
 {% block body %}
-<!-- Section Hero / fond -->
 <section class="hero d-flex align-items-center justify-content-center" style="height:100vh; background: url('{{ asset('images/hero-bg.jpg') }}') no-repeat center center/cover;">
-    
-    <!-- Card Formulaire -->
+
     <div class="card p-4 shadow-lg" style="width: 100%; max-width: 400px; border-radius: 15px; position: relative;">
-        
+
         <!-- Flèche retour Home -->
         <a href="{{ path('home') }}" style="position: absolute; top: 15px; left: 15px; text-decoration: none; font-size: 20px;">&#8592; Home</a>
-        
+
         <h2 class="text-center mb-4 mt-3">Créer un compte</h2>
 
-        {# messages flash #}
+        {# Messages flash #}
         {% for label, messages in app.flashes %}
             {% for message in messages %}
                 <div class="alert alert-{{ label }}">{{ message }}</div>
@@ -61,40 +59,34 @@
         {% endfor %}
 
         {{ form_start(form) }}
-    <div class="mb-3">
-        {{ form_label(form.firstname) }}
-        {{ form_widget(form.firstname, {'attr': {'class': 'form-control form-control-lg'}}) }}
-        {{ form_errors(form.firstname) }}
-    </div>
 
-    <div class="mb-3">
-        {{ form_label(form.email) }}
-        {{ form_widget(form.email, {'attr': {'class': 'form-control form-control-lg'}}) }}
-        {{ form_errors(form.email) }}
-    </div>
+        <div class="mb-3">
+            {{ form_row(form.firstname, {'attr': {'class': 'form-control'}}) }}
+        </div>
 
-    <div class="mb-3">
-        {{ form_label(form.password.first) }}
-        {{ form_widget(form.password.first, {'attr': {'class': 'form-control form-control-lg'}}) }}
-        {{ form_errors(form.password.first) }}
-    </div>
+        <div class="mb-3">
+            {{ form_row(form.email, {'attr': {'class': 'form-control'}}) }}
+        </div>
 
-    <div class="mb-3">
-        {{ form_label(form.password.second) }}
-        {{ form_widget(form.password.second, {'attr': {'class': 'form-control form-control-lg'}}) }}
-        {{ form_errors(form.password.second) }}
-    </div>
+        <div class="mb-3">
+            {{ form_row(form.password.first, {'attr': {'class': 'form-control'}}) }}
+        </div>
 
-    
+        <div class="mb-3">
+            {{ form_row(form.password.second, {'attr': {'class': 'form-control'}}) }}
+        </div>
 
+        <div class="mb-3 d-grid">
+            {{ form_widget(form.submit) }}
+        </div>
 
-{{ form_end(form, {'render_rest': false}) }}
+        {{ form_end(form) }}
 
-{# Ton bouton stylé ici #}
-    <button type="submit" class="btn btn-register w-100 mb-3">S'inscrire</button>
         <!-- Lien vers Login -->
-        <p class="text-center mb-0">Vous avez déjà un compte ? <a href="{{ path('app_login') }}" class="btn-login">Connexion</a></p>
+        <p class="text-center mb-0 mt-2">
+            Vous avez déjà un compte ? <a href="{{ path('app_login') }}" class="btn-login">Connexion</a>
+        </p>
+
     </div>
 </section>
 {% endblock %}
-
